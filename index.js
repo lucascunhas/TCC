@@ -2,6 +2,12 @@ const express = require('express');
 const app = express();
 const conexao = require('./database/db');
 
+const ControleAgendamento = require('./cont_agendeaqui/controleAgendamento');
+const ControleProdutos = require('./cont_produtos/controleProdutos');
+
+app.use("/", ControleAgendamento)
+app.use("/", ControleProdutos)
+
 conexao.authenticate().then(()=>{
     console.log("CONECTADO COM O BANCO");
 }).catch((erroMsg)=>{
